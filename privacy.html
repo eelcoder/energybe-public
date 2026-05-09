@@ -49,6 +49,13 @@
             margin-bottom: 28px;
         }
         hr { border: none; border-top: 1px solid #e5e5ea; margin: 28px 0; }
+        code {
+            font-family: ui-monospace, "SF Mono", Menlo, monospace;
+            font-size: 13px;
+            background: #f2f2f7;
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +77,10 @@
         password are stored in the iOS Keychain. They are transmitted only
         to <code>login.fluvius.be</code> over HTTPS and never to any
         developer-controlled server.</li>
+        <li><strong>Meter identifiers</strong> — EAN codes and meter serial
+        numbers linked to your Fluvius account are stored on-device in the
+        iOS Keychain to identify your meters. They are never sent to the
+        developer.</li>
         <li><strong>Energy consumption data</strong> — meter readings fetched
         from the Fluvius API are cached on your device only. They are never
         uploaded anywhere.</li>
@@ -94,15 +105,17 @@
         privacy policy</a>.</li>
         <li><strong>Open-Meteo</strong> (<a href="https://open-meteo.com">open-meteo.com</a>)
         — to fetch historical outdoor temperatures for the temperature
-        correlation feature. Open-Meteo is a free open-source weather API;
-        no account or personal data is required or sent.</li>
+        correlation feature. Open-Meteo is a free open-source weather API
+        that requires no account. Only a city name (derived from your meter
+        address) is sent to resolve coordinates; no other personal data is
+        transmitted.</li>
     </ul>
 
     <h2>How to delete all your data</h2>
     <p>Open EnergyBe → Profile → <strong>Delete Account &amp; Data</strong>.
-    This permanently removes all credentials, cached energy data, and
-    preferences from your device immediately. Nothing is stored elsewhere
-    to delete.</p>
+    This permanently removes all credentials, meter identifiers, cached energy
+    data, and preferences from your device immediately. Nothing is stored
+    elsewhere to delete.</p>
 
     <hr>
 
