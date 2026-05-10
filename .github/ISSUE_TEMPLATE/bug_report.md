@@ -1,38 +1,40 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+about: Report a problem in EnergyBe
+title: '[Bug] '
+labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Describe the bug
+A clear and concise description of what went wrong.
 
-**To Reproduce**
-Steps to reproduce the behavior:
+## Steps to reproduce
 1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+2. Tap on '...'
+3. See error / unexpected behaviour
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Expected behaviour
+What you expected to happen instead.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## App context
+| Field | Value |
+|---|---|
+| EnergyBe version | e.g. 1.2.0 (check App Store or Settings → About) |
+| iOS version | e.g. 18.3.1 |
+| Device | e.g. iPhone 15 Pro |
+| Account type | Fluvius account / Demo mode |
+| Energy type | Electricity / Gas / Both |
+| Screen | Home / Charts / Compare / Profile / Meter detail / Login / … |
+| Granularity (if Charts) | Day / Week / Month / Year |
+| Active insight (if Charts) | Forecast / Comparison / Tariff balance / Temperature link / … / None |
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## What the data looks like
+Does the bug affect how numbers are displayed, or is it a crash / layout / navigation issue? Any unusual conditions (e.g. just signed in for the first time, meter discovery still pending, cache just cleared)?
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+## Screenshots or screen recording
+If applicable, attach screenshots or a short screen recording. You can drag files directly into this text box on GitHub.
 
-**Additional context**
-Add any other context about the problem here.
+## Additional context
+Add any other context here — for example, whether the bug is reproducible every time or intermittent, whether it appeared after an iOS or app update, or whether restarting the app changes anything.
