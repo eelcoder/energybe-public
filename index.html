@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EnergyBe – Fluvius energie op je iPhone</title>
+  <meta name="description" content="Bekijk je elektriciteits- en gasverbruik rechtstreeks via je Fluvius slimme meter. Gratis iPhone-app voor Belgische gezinnen.">
+  <meta property="og:title" content="EnergyBe – Fluvius energie op je iPhone">
+  <meta property="og:description" content="Inzicht in je verbruik, prognoses en benchmarks via de Fluvius slimme meter.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eelcoder.github.io/energybe-public/">
+  <link rel="canonical" href="https://eelcoder.github.io/energybe-public/">
+
+  <!-- Structured data -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "EnergyBe",
+    "operatingSystem": "iOS",
+    "applicationCategory": "UtilitiesApplication",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "description": "Bekijk je elektriciteits- en gasverbruik via de Fluvius slimme meter. Prognoses, benchmarks en widgetondersteuning.",
+    "inLanguage": ["nl", "fr"],
+    "countriesSupported": "BE",
+    "url": "https://eelcoder.github.io/energybe-public/"
+  }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --navy-deep:   #0e1a3a;
+      --navy-mid:    #162248;
+      --navy-light:  #1e3268;
+      --blue:        #2bbcf2;
+      --blue-dim:    rgba(43,188,242,.18);
+      --blue-glow:   rgba(43,188,242,.35);
+      --orange:      #f5920a;
+      --orange-dim:  rgba(245,146,10,.15);
+      --white:       #ffffff;
+      --white-60:    rgba(255,255,255,.60);
+      --white-20:    rgba(255,255,255,.12);
+      --radius:      18px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy-deep);
+      color: var(--white);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .4; pointer-events: none;
+    }
+
+    /* ── ORB BACKGROUNDS ── */
+    .orb {
+      position: fixed; border-radius: 50%;
+      filter: blur(80px); pointer-events: none; z-index: 0;
+    }
+    .orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(43,188,242,.22) 0%, transparent 70%); top: -120px; right: -80px; }
+    .orb-2 { width: 360px; height: 360px; background: radial-gradient(circle, rgba(0,86,214,.18) 0%, transparent 70%); bottom: 10%; left: -60px; }
+    .orb-3 { width: 280px; height: 280px; background: radial-gradient(circle, rgba(245,146,10,.12) 0%, transparent 70%); top: 55%; right: 5%; }
+
+    /* ── LAYOUT ── */
+    .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── LANG TOGGLE ── */
+    nav {
+      position: relative; z-index: 10;
+      display: flex; justify-content: flex-end; align-items: center;
+      padding: 20px 24px;
+      max-width: 880px; margin: 0 auto;
+    }
+    .lang-toggle {
+      display: flex; gap: 4px;
+      background: var(--white-20);
+      border-radius: 100px; padding: 4px;
+    }
+    .lang-btn {
+      border: none; cursor: pointer; border-radius: 100px;
+      padding: 5px 14px; font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500; transition: all .2s;
+      background: transparent; color: var(--white-60);
+    }
+    .lang-btn.active { background: var(--blue); color: var(--navy-deep); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 60px 0 80px;
+    }
+
+    .app-icon {
+      width: 100px; height: 100px; border-radius: 22px;
+      background: linear-gradient(135deg, #162248, var(--blue) 160%);
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 20px 60px rgba(43,188,242,.3);
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+    .app-icon svg { width: 52px; height: 52px; }
+
+    .eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -.02em;
+      margin-bottom: 18px;
+    }
+    h1 span { color: var(--blue); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 300; color: var(--white-60);
+      max-width: 560px; margin: 0 auto 40px; line-height: 1.65;
+    }
+
+    /* ── CTA BUTTONS ── */
+    .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-store {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--white); color: var(--navy-deep);
+      border-radius: 14px; padding: 13px 22px;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
+      text-decoration: none; transition: all .25s;
+      box-shadow: 0 8px 30px rgba(255,255,255,.12);
+    }
+    .btn-store:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,255,255,.18); }
+    .btn-store svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--white-20); color: var(--white-60);
+      border-radius: 14px; padding: 13px 22px;
+      font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px;
+      text-decoration: none; transition: all .25s; background: transparent;
+    }
+    .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── SCREEN MOCKUP ── */
+    .mockup-wrap {
+      margin: 70px 0;
+      display: flex; justify-content: center;
+    }
+    .mockup {
+      width: min(320px, 80vw);
+      background: linear-gradient(160deg, #162248 0%, #0e1a3a 60%, #0056d6 200%);
+      border-radius: 38px;
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 28px 24px;
+      box-shadow: 0 40px 100px rgba(0,0,0,.5), 0 0 0 1px rgba(43,188,242,.15), 0 0 80px rgba(43,188,242,.12);
+    }
+    .mockup-notch { width: 90px; height: 8px; background: rgba(255,255,255,.08); border-radius: 4px; margin: 0 auto 20px; }
+    .mockup-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 6px; }
+    .mockup-value { font-size: 38px; font-weight: 700; letter-spacing: -.02em; color: #fff; margin-bottom: 4px; }
+    .mockup-unit { font-size: 12px; color: rgba(255,255,255,.5); margin-bottom: 20px; }
+    .mockup-pills { display: flex; gap: 8px; margin-bottom: 20px; }
+    .mockup-pill {
+      flex: 1; border-radius: 12px; padding: 10px 12px;
+      font-size: 11px; font-weight: 600;
+    }
+    .pill-elec { background: rgba(43,188,242,.15); color: var(--blue); }
+    .pill-gas  { background: var(--orange-dim); color: var(--orange); }
+    .mockup-bars { display: flex; align-items: flex-end; gap: 5px; height: 60px; }
+    .bar {
+      flex: 1; border-radius: 4px 4px 0 0;
+      background: rgba(43,188,242,.3);
+      transition: height .3s;
+    }
+    .bar.hi { background: var(--blue); }
+
+    /* ── FEATURES ── */
+    .section-title {
+      font-size: 13px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .section-heading {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700; letter-spacing: -.02em; margin-bottom: 48px;
+      line-height: 1.15;
+    }
+
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 80px; }
+
+    .feature-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--white-20);
+      border-radius: var(--radius); padding: 24px;
+      transition: all .25s;
+    }
+    .feature-card:hover { background: rgba(43,188,242,.07); border-color: rgba(43,188,242,.3); transform: translateY(-3px); }
+
+    .feature-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px; font-size: 20px;
+    }
+
+    .feature-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .feature-card p  { font-size: 14px; color: var(--white-60); line-height: 1.6; }
+
+    /* ── DIVIDER ── */
+    hr.fancy {
+      border: none; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--white-20), transparent);
+      margin: 48px 0;
+    }
+
+    /* ── FOOTER LINKS ── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 40px 24px 60px;
+    }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+    .footer-links a {
+      color: var(--white-60); font-size: 14px; text-decoration: none;
+      transition: color .2s; display: flex; align-items: center; gap: 6px;
+    }
+    .footer-links a:hover { color: var(--blue); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      animation: fadeUp .7s ease forwards;
+    }
+    @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .2s; }
+    .delay-3 { animation-delay: .3s; }
+    .delay-4 { animation-delay: .4s; }
+
+    /* ── HIDDEN LANG ── */
+    [data-lang] { display: none; }
+    [data-lang].visible { display: block; }
+    .hero [data-lang].visible { display: inline; }
+    .hero-sub[data-lang].visible { display: block; }
+  </style>
+
+</head>
+<body>
+
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- NAV -->
+
+  <nav>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('nl')">NL</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <div class="container">
+    <section class="hero">
+
+```
+  <div class="app-icon fade-up">
+    <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 6L14 28h14l-6 18L44 24H30L36 6z" fill="#2BBCF2" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <p class="eyebrow fade-up delay-1">EnergyBe</p>
+
+  <h1 class="fade-up delay-2">
+    <span data-lang="nl" class="visible">Fluvius energie<br>in je broekzak</span>
+    <span data-lang="fr">Votre énergie<br><span>Fluvius</span> en poche</span>
+  </h1>
+
+  <p class="hero-sub fade-up delay-3" data-lang="nl" style="display:block;">
+    Bekijk je elektriciteits- en gasverbruik rechtstreeks via je Fluvius slimme meter.
+    Prognoses, piek/dal-analyse, buurtbenchmark en een widget op je thuisscherm.
+  </p>
+  <p class="hero-sub fade-up delay-3" data-lang="fr">
+    Consultez votre consommation d'électricité et de gaz directement depuis votre compteur intelligent Fluvius.
+    Prévisions, analyse heures pleines/creuses, benchmark local et widget sur l'écran d'accueil.
+  </p>
+
+  <div class="cta-group fade-up delay-4">
+    <!-- Replace id=000000000 with your real App Store ID -->
+    <a class="btn-store" href="https://apps.apple.com/be/app/energybe/id000000000">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <span data-lang="nl" class="visible">Download in de App Store</span>
+      <span data-lang="fr">Télécharger sur l'App Store</span>
+    </a>
+    <a class="btn-ghost" href="https://github.com/eelcoder/energybe-public">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      <span data-lang="nl" class="visible">GitHub</span>
+      <span data-lang="fr">GitHub</span>
+    </a>
+  </div>
+</section>
+
+<!-- MOCKUP -->
+<div class="mockup-wrap fade-up delay-4">
+  <div class="mockup">
+    <div class="mockup-notch"></div>
+    <div class="mockup-label" data-lang="nl" style="display:block;">Elektriciteit · Maand</div>
+    <div class="mockup-label" data-lang="fr">Électricité · Mois</div>
+    <div class="mockup-value">287</div>
+    <div class="mockup-unit">kWh</div>
+    <div class="mockup-pills">
+      <div class="mockup-pill pill-elec">⚡ Stroom</div>
+      <div class="mockup-pill pill-gas">🔥 Gas</div>
+    </div>
+    <div class="mockup-bars">
+      <div class="bar" style="height:35%"></div>
+      <div class="bar" style="height:55%"></div>
+      <div class="bar" style="height:40%"></div>
+      <div class="bar" style="height:70%"></div>
+      <div class="bar" style="height:50%"></div>
+      <div class="bar" style="height:80%"></div>
+      <div class="bar hi" style="height:65%"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section style="margin-bottom:80px;">
+  <p class="section-title" data-lang="nl" style="display:block;">Wat je krijgt</p>
+  <p class="section-title" data-lang="fr">Ce que vous obtenez</p>
+  <h2 class="section-heading">
+    <span data-lang="nl" style="display:block;">Alles wat je over<br>je verbruik wil weten</span>
+    <span data-lang="fr">Tout ce que vous voulez<br>savoir sur votre consommation</span>
+  </h2>
+
+  <div class="features">
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(43,188,242,.15);">⚡</div>
+      <h3 data-lang="nl" style="display:block;">Slimme meter koppeling</h3>
+      <h3 data-lang="fr">Connexion compteur</h3>
+      <p data-lang="nl" style="display:block;">Rechtstreeks verbonden met je Fluvius-account. Dag, week, maand en jaar in één overzicht.</p>
+      <p data-lang="fr">Connecté directement à votre compte Fluvius. Jour, semaine, mois et année en un coup d'œil.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(245,146,10,.12);">🔮</div>
+      <h3 data-lang="nl" style="display:block;">Prognose einde maand</h3>
+      <h3 data-lang="fr">Prévision fin de mois</h3>
+      <p data-lang="nl" style="display:block;">EnergyBe projecteert je eindverbruik op basis van je huidig tempo en vorige maand.</p>
+      <p data-lang="fr">EnergyBe projette votre consommation finale en fonction de votre rythme et du mois précédent.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(22,163,74,.15);">🌙</div>
+      <h3 data-lang="nl" style="display:block;">Piek &amp; dal-analyse</h3>
+      <h3 data-lang="fr">Analyse heures pleines/creuses</h3>
+      <p data-lang="nl" style="display:block;">Zie hoeveel je verbruikt tijdens piek- en daluren en hoe je goedkoper kunt laden.</p>
+      <p data-lang="fr">Visualisez votre consommation en heures pleines et creuses pour optimiser votre facture.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(109,94,245,.15);">🌡️</div>
+      <h3 data-lang="nl" style="display:block;">Temperatuurcorrelatie</h3>
+      <h3 data-lang="fr">Corrélation température</h3>
+      <p data-lang="nl" style="display:block;">Ontdek hoe buitentemperatuur je gasverbruik beïnvloedt via Open-Meteo data.</p>
+      <p data-lang="fr">Découvrez comment la température extérieure influence votre consommation de gaz via Open-Meteo.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(43,188,242,.15);">🏘️</div>
+      <h3 data-lang="nl" style="display:block;">Buurtbenchmark</h3>
+      <h3 data-lang="fr">Benchmark local</h3>
+      <p data-lang="nl" style="display:block;">Vergelijk je verbruik met het gemiddelde van je gemeente en Vlaanderen via open Fluvius-data.</p>
+      <p data-lang="fr">Comparez votre consommation avec la moyenne de votre commune et de la Flandre via données Fluvius ouvertes.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(255,255,255,.06);">📲</div>
+      <h3 data-lang="nl" style="display:block;">Widget &amp; vergrendeld scherm</h3>
+      <h3 data-lang="fr">Widget &amp; écran verrouillé</h3>
+      <p data-lang="nl" style="display:block;">Bekijk je wekelijks verbruik direct op je thuisscherm, in StandBy of op het vergrendeld scherm.</p>
+      <p data-lang="fr">Consultez votre consommation hebdomadaire depuis votre écran d'accueil, en StandBy ou sur l'écran verrouillé.</p>
+    </div>
+
+  </div>
+</section>
+
+<hr class="fancy">
+```
+
+  </div>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="footer-links">
+      <a href="https://eelcoder.github.io/energybe-public/privacy.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span data-lang="nl" style="display:inline;">Privacybeleid</span>
+        <span data-lang="fr">Politique de confidentialité</span>
+      </a>
+      <a href="https://eelcoder.github.io/energybe-public/support.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+        <span data-lang="nl" style="display:inline;">Ondersteuning</span>
+        <span data-lang="fr">Assistance</span>
+      </a>
+      <a href="https://github.com/eelcoder/energybe-public/issues">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        <span data-lang="nl" style="display:inline;">Bug melden</span>
+        <span data-lang="fr">Signaler un bug</span>
+      </a>
+    </div>
+    <p class="footer-copy">© 2025 EnergyBe · Niet gelieerd aan Fluvius · Not affiliated with Fluvius</p>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      // Toggle button state
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+      // Show/hide lang elements
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.classList.toggle('visible', el.dataset.lang === lang);
+        // For block-level text, also toggle display directly
+        if (el.dataset.lang === lang) {
+          el.style.display = el.tagName === 'SPAN' ? 'inline' : 'block';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+
+      document.documentElement.lang = lang;
+    }
+
+    // Intersection observer for scroll animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.style.animationPlayState = 'running'; });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
