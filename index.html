@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
@@ -27,15 +28,12 @@
   </script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,500;9..40,700&display=swap');
 
     :root {
       --navy-deep:  #0e1a3a;
       --navy-mid:   #162248;
-      --navy-light: #1e3268;
       --blue:       #2bbcf2;
-      --blue-dim:   rgba(43,188,242,.18);
-      --blue-glow:  rgba(43,188,242,.35);
       --orange:     #f5920a;
       --orange-dim: rgba(245,146,10,.15);
       --white:      #ffffff;
@@ -57,9 +55,9 @@
 
     body::before {
       content: '';
-      position: fixed; inset: 0; z-index: 0;
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: .4; pointer-events: none;
+      opacity: .4;
     }
 
     .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
@@ -69,10 +67,10 @@
 
     .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: relative; z-index: 10;
-      display: flex; justify-content: flex-end; align-items: center;
+      display: flex; justify-content: flex-end;
       padding: 20px 24px; max-width: 880px; margin: 0 auto;
     }
     .lang-toggle { display: flex; gap: 4px; background: var(--white-20); border-radius: 100px; padding: 4px; }
@@ -84,7 +82,7 @@
     }
     .lang-btn.active { background: var(--blue); color: var(--navy-deep); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero { text-align: center; padding: 60px 0 80px; }
 
     .app-icon {
@@ -101,11 +99,11 @@
     .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
 
     h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 700; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 18px; }
-    h1 span { color: var(--blue); }
+    h1 .accent { color: var(--blue); }
 
-    .hero-sub { font-size: clamp(1rem, 2.5vw, 1.2rem); font-weight: 300; color: var(--white-60); max-width: 560px; margin: 0 auto 40px; line-height: 1.65; }
+    .hero-sub { font-size: clamp(1rem, 2.5vw, 1.15rem); font-weight: 300; color: var(--white-60); max-width: 560px; margin: 0 auto 40px; line-height: 1.65; }
 
-    /* ── CTA ── */
+    /* CTA */
     .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
     .btn-store {
@@ -116,7 +114,7 @@
       text-decoration: none; transition: all .25s;
       box-shadow: 0 8px 30px rgba(255,255,255,.12);
     }
-    .btn-store:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,255,255,.18); }
+    .btn-store:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,255,255,.2); }
     .btn-store svg { width: 22px; height: 22px; flex-shrink: 0; }
 
     .btn-ghost {
@@ -128,7 +126,7 @@
     }
     .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
 
-    /* ── MOCKUP ── */
+    /* MOCKUP */
     .mockup-wrap { margin: 70px 0; display: flex; justify-content: center; }
     .mockup {
       width: min(320px, 80vw);
@@ -148,8 +146,8 @@
     .bar { flex: 1; border-radius: 4px 4px 0 0; background: rgba(43,188,242,.3); }
     .bar.hi { background: var(--blue); }
 
-    /* ── FEATURES ── */
-    .section-title { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    /* FEATURES */
+    .section-label { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
     .section-heading { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: 48px; line-height: 1.15; }
 
     .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 80px; }
@@ -164,25 +162,26 @@
 
     hr.fancy { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--white-20), transparent); margin: 48px 0; }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px 60px; }
     .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
-    .footer-links a { color: var(--white-60); font-size: 14px; text-decoration: none; transition: color .2s; display: flex; align-items: center; gap: 6px; }
+    .footer-links a { color: var(--white-60); font-size: 14px; text-decoration: none; transition: color .2s; display: inline-flex; align-items: center; gap: 6px; }
     .footer-links a:hover { color: var(--blue); }
     .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
 
-    /* ── ANIMATIONS ── */
-    .fade-up { opacity: 0; transform: translateY(24px); animation: fadeUp .7s ease forwards; }
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(24px); animation: fadeUp .7s ease forwards; animation-play-state: paused; }
+    .fade-up.visible { animation-play-state: running; }
     @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
     .delay-1 { animation-delay: .1s; }
     .delay-2 { animation-delay: .2s; }
     .delay-3 { animation-delay: .3s; }
     .delay-4 { animation-delay: .4s; }
 
-    /* ── LANG VISIBILITY ── */
-    /* Default: NL visible, others hidden */
-    [data-lang="fr"], [data-lang="en"] { display: none !important; }
+    /* LANG — all hidden by default, JS shows the active lang */
+    [data-lang] { display: none; }
   </style>
+
 </head>
 <body>
 
@@ -191,168 +190,174 @@
   <div class="orb orb-3"></div>
 
   <!-- NAV -->
+
   <nav>
     <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('nl')">NL</button>
+      <button class="lang-btn" onclick="setLang('nl')">NL</button>
       <button class="lang-btn" onclick="setLang('fr')">FR</button>
       <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
   </nav>
 
-  <!-- HERO -->
   <div class="container">
-    <section class="hero">
 
-      <div class="app-icon fade-up">
-        <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M30 6L14 28h14l-6 18L44 24H30L36 6z" fill="#2BBCF2" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
-        </svg>
-      </div>
+```
+<!-- HERO -->
+<section class="hero">
 
-      <p class="eyebrow fade-up delay-1">EnergyBe</p>
+  <div class="app-icon fade-up">
+    <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 6L14 28h14l-6 18L44 24H30L36 6z" fill="#2BBCF2" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+    </svg>
+  </div>
 
-      <h1 class="fade-up delay-2">
-        <span data-lang="nl">Jouw energie,<br><span>slimmer bekeken</span></span>
-        <span data-lang="fr">Votre énergie,<br><span>mieux comprise</span></span>
-        <span data-lang="en">Your energy,<br><span>beautifully clear</span></span>
-      </h1>
+  <p class="eyebrow fade-up delay-1">EnergyBe</p>
 
-      <p class="hero-sub fade-up delay-3" data-lang="nl">
-        Bekijk je elektriciteits- en gasverbruik rechtstreeks via je slimme meter.
-        Prognoses, piek/dal-analyse, buurtbenchmark en een widget op je thuisscherm.
-      </p>
-      <p class="hero-sub fade-up delay-3" data-lang="fr">
-        Consultez votre consommation d'électricité et de gaz directement depuis votre compteur intelligent.
-        Prévisions, analyse heures pleines/creuses, benchmark local et widget sur l'écran d'accueil.
-      </p>
-      <p class="hero-sub fade-up delay-3" data-lang="en">
-        Track your electricity and gas consumption directly from your smart meter.
-        Forecasts, peak/off-peak analysis, neighbourhood benchmark and a home screen widget.
-      </p>
+  <h1 class="fade-up delay-2">
+    <span data-lang="nl">Jouw energie,<br><span class="accent">slimmer bekeken</span></span>
+    <span data-lang="fr">Votre énergie,<br><span class="accent">mieux comprise</span></span>
+    <span data-lang="en">Your energy,<br><span class="accent">beautifully clear</span></span>
+  </h1>
 
-      <div class="cta-group fade-up delay-4">
-        <!-- Replace id=000000000 with your real App Store ID -->
-        <a class="btn-store" href="https://apps.apple.com/be/app/energybe/id000000000">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          <span data-lang="nl">Download in de App Store</span>
-          <span data-lang="fr">Télécharger sur l'App Store</span>
-          <span data-lang="en">Download on the App Store</span>
-        </a>
-        <a class="btn-ghost" href="https://github.com/eelcoder/energybe-public">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          GitHub
-        </a>
-      </div>
-    </section>
+  <p class="hero-sub fade-up delay-3" data-lang="nl">
+    Bekijk je elektriciteits- en gasverbruik rechtstreeks via je slimme meter.
+    Prognoses, piek/dal-analyse, buurtbenchmark en een widget op je thuisscherm.
+  </p>
+  <p class="hero-sub fade-up delay-3" data-lang="fr">
+    Consultez votre consommation d'électricité et de gaz directement depuis votre compteur intelligent.
+    Prévisions, analyse heures pleines/creuses, benchmark local et widget sur l'écran d'accueil.
+  </p>
+  <p class="hero-sub fade-up delay-3" data-lang="en">
+    Track your electricity and gas consumption directly from your smart meter.
+    Forecasts, peak/off-peak analysis, neighbourhood benchmark and a home screen widget.
+  </p>
 
-    <!-- MOCKUP -->
-    <div class="mockup-wrap fade-up delay-4">
-      <div class="mockup">
-        <div class="mockup-notch"></div>
-        <div class="mockup-label" data-lang="nl">Elektriciteit · Maand</div>
-        <div class="mockup-label" data-lang="fr">Électricité · Mois</div>
-        <div class="mockup-label" data-lang="en">Electricity · Month</div>
-        <div class="mockup-value">287</div>
-        <div class="mockup-unit">kWh</div>
-        <div class="mockup-pills">
-          <div class="mockup-pill pill-elec" data-lang="nl">⚡ Elektriciteit</div>
-          <div class="mockup-pill pill-elec" data-lang="fr">⚡ Électricité</div>
-          <div class="mockup-pill pill-elec" data-lang="en">⚡ Electricity</div>
-          <div class="mockup-pill pill-gas">🔥 Gas</div>
-        </div>
-        <div class="mockup-bars">
-          <div class="bar" style="height:35%"></div>
-          <div class="bar" style="height:55%"></div>
-          <div class="bar" style="height:40%"></div>
-          <div class="bar" style="height:70%"></div>
-          <div class="bar" style="height:50%"></div>
-          <div class="bar" style="height:80%"></div>
-          <div class="bar hi" style="height:65%"></div>
-        </div>
-      </div>
+  <div class="cta-group fade-up delay-4">
+    <!-- Replace id=000000000 with your real App Store ID -->
+    <a class="btn-store" href="https://apps.apple.com/be/app/energybe/id000000000">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      <span data-lang="nl">Download in de App Store</span>
+      <span data-lang="fr">Télécharger sur l'App Store</span>
+      <span data-lang="en">Download on the App Store</span>
+    </a>
+    <a class="btn-ghost" href="https://github.com/eelcoder/energybe-public">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      GitHub
+    </a>
+  </div>
+</section>
+
+<!-- MOCKUP -->
+<div class="mockup-wrap fade-up delay-4">
+  <div class="mockup">
+    <div class="mockup-notch"></div>
+    <div class="mockup-label" data-lang="nl">Elektriciteit · Maand</div>
+    <div class="mockup-label" data-lang="fr">Électricité · Mois</div>
+    <div class="mockup-label" data-lang="en">Electricity · Month</div>
+    <div class="mockup-value">287</div>
+    <div class="mockup-unit">kWh</div>
+    <div class="mockup-pills">
+      <div class="mockup-pill pill-elec" data-lang="nl">⚡ Elektriciteit</div>
+      <div class="mockup-pill pill-elec" data-lang="fr">⚡ Électricité</div>
+      <div class="mockup-pill pill-elec" data-lang="en">⚡ Electricity</div>
+      <div class="mockup-pill pill-gas">🔥 Gas</div>
+    </div>
+    <div class="mockup-bars">
+      <div class="bar" style="height:35%"></div>
+      <div class="bar" style="height:55%"></div>
+      <div class="bar" style="height:40%"></div>
+      <div class="bar" style="height:70%"></div>
+      <div class="bar" style="height:50%"></div>
+      <div class="bar" style="height:80%"></div>
+      <div class="bar hi" style="height:65%"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section style="margin-bottom:80px;">
+  <p class="section-label" data-lang="nl">Wat je krijgt</p>
+  <p class="section-label" data-lang="fr">Ce que vous obtenez</p>
+  <p class="section-label" data-lang="en">What you get</p>
+
+  <h2 class="section-heading">
+    <span data-lang="nl">Alles wat je over<br>je verbruik wil weten</span>
+    <span data-lang="fr">Tout ce que vous voulez<br>savoir sur votre consommation</span>
+    <span data-lang="en">Everything you want<br>to know about your usage</span>
+  </h2>
+
+  <div class="features">
+
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(43,188,242,.15);">⚡</div>
+      <h3 data-lang="nl">Slimme meter koppeling</h3>
+      <h3 data-lang="fr">Connexion compteur intelligent</h3>
+      <h3 data-lang="en">Smart meter connection</h3>
+      <p data-lang="nl">Rechtstreeks verbonden met je account. Dag, week, maand en jaar in één overzicht.</p>
+      <p data-lang="fr">Connecté directement à votre compte. Jour, semaine, mois et année en un coup d'œil.</p>
+      <p data-lang="en">Connected directly to your account. Day, week, month and year in one clear overview.</p>
     </div>
 
-    <!-- FEATURES -->
-    <section style="margin-bottom:80px;">
-      <p class="section-title" data-lang="nl">Wat je krijgt</p>
-      <p class="section-title" data-lang="fr">Ce que vous obtenez</p>
-      <p class="section-title" data-lang="en">What you get</p>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(245,146,10,.12);">🔮</div>
+      <h3 data-lang="nl">Prognose einde maand</h3>
+      <h3 data-lang="fr">Prévision fin de mois</h3>
+      <h3 data-lang="en">End-of-month forecast</h3>
+      <p data-lang="nl">EnergyBe projecteert je eindverbruik op basis van je huidig tempo en vorige maand.</p>
+      <p data-lang="fr">EnergyBe projette votre consommation finale en fonction de votre rythme et du mois précédent.</p>
+      <p data-lang="en">EnergyBe projects your total usage based on your current pace and last month's pattern.</p>
+    </div>
 
-      <h2 class="section-heading">
-        <span data-lang="nl">Alles wat je over<br>je verbruik wil weten</span>
-        <span data-lang="fr">Tout ce que vous voulez<br>savoir sur votre consommation</span>
-        <span data-lang="en">Everything you want<br>to know about your usage</span>
-      </h2>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(22,163,74,.15);">🌙</div>
+      <h3 data-lang="nl">Piek &amp; dal-analyse</h3>
+      <h3 data-lang="fr">Analyse heures pleines/creuses</h3>
+      <h3 data-lang="en">Peak &amp; off-peak analysis</h3>
+      <p data-lang="nl">Zie hoeveel je verbruikt tijdens piek- en daluren en hoe je goedkoper kunt laden.</p>
+      <p data-lang="fr">Visualisez votre consommation en heures pleines et creuses pour optimiser votre facture.</p>
+      <p data-lang="en">See how much you consume during peak and off-peak hours and shift loads to save money.</p>
+    </div>
 
-      <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(109,94,245,.15);">🌡️</div>
+      <h3 data-lang="nl">Temperatuurcorrelatie</h3>
+      <h3 data-lang="fr">Corrélation température</h3>
+      <h3 data-lang="en">Temperature correlation</h3>
+      <p data-lang="nl">Ontdek hoe buitentemperatuur je gasverbruik beïnvloedt via Open-Meteo data.</p>
+      <p data-lang="fr">Découvrez comment la température extérieure influence votre consommation de gaz via Open-Meteo.</p>
+      <p data-lang="en">Discover how outdoor temperature drives your gas usage, powered by Open-Meteo data.</p>
+    </div>
 
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(43,188,242,.15);">⚡</div>
-          <h3 data-lang="nl">Slimme meter koppeling</h3>
-          <h3 data-lang="fr">Connexion compteur intelligent</h3>
-          <h3 data-lang="en">Smart meter connection</h3>
-          <p data-lang="nl">Rechtstreeks verbonden met je account. Dag, week, maand en jaar in één overzicht.</p>
-          <p data-lang="fr">Connecté directement à votre compte. Jour, semaine, mois et année en un coup d'œil.</p>
-          <p data-lang="en">Connected directly to your account. Day, week, month and year in one clear overview.</p>
-        </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(43,188,242,.15);">🏘️</div>
+      <h3 data-lang="nl">Buurtbenchmark</h3>
+      <h3 data-lang="fr">Benchmark local</h3>
+      <h3 data-lang="en">Neighbourhood benchmark</h3>
+      <p data-lang="nl">Vergelijk je verbruik met het gemiddelde van je gemeente en Vlaanderen via open data.</p>
+      <p data-lang="fr">Comparez votre consommation avec la moyenne de votre commune et de la Flandre via données ouvertes.</p>
+      <p data-lang="en">Compare your usage with your municipality and Flanders averages using open data.</p>
+    </div>
 
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(245,146,10,.12);">🔮</div>
-          <h3 data-lang="nl">Prognose einde maand</h3>
-          <h3 data-lang="fr">Prévision fin de mois</h3>
-          <h3 data-lang="en">End-of-month forecast</h3>
-          <p data-lang="nl">EnergyBe projecteert je eindverbruik op basis van je huidig tempo en vorige maand.</p>
-          <p data-lang="fr">EnergyBe projette votre consommation finale en fonction de votre rythme et du mois précédent.</p>
-          <p data-lang="en">EnergyBe projects your total usage based on your current pace and last month's pattern.</p>
-        </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:rgba(255,255,255,.06);">📲</div>
+      <h3 data-lang="nl">Widget &amp; vergrendeld scherm</h3>
+      <h3 data-lang="fr">Widget &amp; écran verrouillé</h3>
+      <h3 data-lang="en">Widget &amp; lock screen</h3>
+      <p data-lang="nl">Bekijk je wekelijks verbruik direct op je thuisscherm, in StandBy of op het vergrendeld scherm.</p>
+      <p data-lang="fr">Consultez votre consommation hebdomadaire depuis votre écran d'accueil, en StandBy ou sur l'écran verrouillé.</p>
+      <p data-lang="en">View your weekly usage right on your home screen, in StandBy mode or on the lock screen.</p>
+    </div>
 
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(22,163,74,.15);">🌙</div>
-          <h3 data-lang="nl">Piek &amp; dal-analyse</h3>
-          <h3 data-lang="fr">Analyse heures pleines/creuses</h3>
-          <h3 data-lang="en">Peak &amp; off-peak analysis</h3>
-          <p data-lang="nl">Zie hoeveel je verbruikt tijdens piek- en daluren en hoe je goedkoper kunt laden.</p>
-          <p data-lang="fr">Visualisez votre consommation en heures pleines et creuses pour optimiser votre facture.</p>
-          <p data-lang="en">See how much you consume during peak and off-peak hours and shift loads to save money.</p>
-        </div>
+  </div>
+</section>
 
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(109,94,245,.15);">🌡️</div>
-          <h3 data-lang="nl">Temperatuurcorrelatie</h3>
-          <h3 data-lang="fr">Corrélation température</h3>
-          <h3 data-lang="en">Temperature correlation</h3>
-          <p data-lang="nl">Ontdek hoe buitentemperatuur je gasverbruik beïnvloedt via Open-Meteo data.</p>
-          <p data-lang="fr">Découvrez comment la température extérieure influence votre consommation de gaz via Open-Meteo.</p>
-          <p data-lang="en">Discover how outdoor temperature drives your gas usage, powered by Open-Meteo data.</p>
-        </div>
+<hr class="fancy">
+```
 
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(43,188,242,.15);">🏘️</div>
-          <h3 data-lang="nl">Buurtbenchmark</h3>
-          <h3 data-lang="fr">Benchmark local</h3>
-          <h3 data-lang="en">Neighbourhood benchmark</h3>
-          <p data-lang="nl">Vergelijk je verbruik met het gemiddelde van je gemeente en Vlaanderen via open data.</p>
-          <p data-lang="fr">Comparez votre consommation avec la moyenne de votre commune et de la Flandre via données ouvertes.</p>
-          <p data-lang="en">Compare your usage with your municipality and Flanders averages using open data.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon" style="background:rgba(255,255,255,.06);">📲</div>
-          <h3 data-lang="nl">Widget &amp; vergrendeld scherm</h3>
-          <h3 data-lang="fr">Widget &amp; écran verrouillé</h3>
-          <h3 data-lang="en">Widget &amp; lock screen</h3>
-          <p data-lang="nl">Bekijk je wekelijks verbruik direct op je thuisscherm, in StandBy of op het vergrendeld scherm.</p>
-          <p data-lang="fr">Consultez votre consommation hebdomadaire depuis votre écran d'accueil, en StandBy ou sur l'écran verrouillé.</p>
-          <p data-lang="en">View your weekly usage right on your home screen, in StandBy mode or on the lock screen.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <hr class="fancy">
   </div>
 
   <!-- FOOTER -->
+
   <footer>
     <div class="footer-links">
       <a href="https://eelcoder.github.io/energybe-public/privacy.html">
@@ -378,46 +383,42 @@
   </footer>
 
   <script>
-    // Elements that need flex display instead of block (pills)
-    const FLEX_SELECTORS = ['.mockup-pill'];
-
     function setLang(lang) {
-      // Update button states
+      // Update active button
       document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
       document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
 
-      // Show/hide all data-lang elements
-      document.querySelectorAll('[data-lang]').forEach(el => {
-        const match = el.dataset.lang === lang;
-        if (!match) {
-          el.style.display = 'none';
-          return;
-        }
-        // Pick the right display value based on element type / context
+      // Hide all lang elements
+      document.querySelectorAll('[data-lang]').forEach(el => el.style.display = 'none');
+
+      // Show matching lang elements with the right display value
+      document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => {
         const tag = el.tagName.toUpperCase();
-        if (tag === 'SPAN') {
-          el.style.display = 'inline';
-        } else if (el.closest('.mockup-pills')) {
+        // Pills need flex, headings/paragraphs need block, inline spans need inline
+        if (el.closest('.mockup-pills')) {
           el.style.display = 'flex';
+        } else if (tag === 'SPAN') {
+          el.style.display = 'inline';
         } else {
           el.style.display = 'block';
         }
       });
 
+      // The gas pill has no data-lang so always show it
+      document.querySelectorAll('.pill-gas').forEach(el => el.style.display = 'flex');
+
       document.documentElement.lang = lang;
     }
 
-    // Default to NL on load
-    setLang('nl');
-
-    // Scroll-triggered fade-up animations
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.style.animationPlayState = 'running'; });
+    // Scroll-triggered fade-up
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => {
-      el.style.animationPlayState = 'paused';
-      observer.observe(el);
-    });
+    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+    // Boot with NL
+    setLang('nl');
   </script>
+
 </body>
 </html>
