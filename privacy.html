@@ -77,10 +77,11 @@
         password are stored in the iOS Keychain. They are transmitted only
         to <code>login.fluvius.be</code> over HTTPS and never to any
         developer-controlled server.</li>
-        <li><strong>Meter identifiers</strong> — EAN codes and meter serial
-        numbers linked to your Fluvius account are stored on-device in the
-        iOS Keychain to identify your meters. They are never sent to the
-        developer.</li>
+        <li><strong>Meter details</strong> — EAN codes, meter serial
+        numbers, meter type/status information, the linked service address,
+        city, and postal code from your Fluvius account are stored on-device
+        in the iOS Keychain to identify your meters and show local comparisons.
+        They are never sent to the developer.</li>
         <li><strong>Energy consumption data</strong> — meter readings fetched
         from the Fluvius API are cached on your device only. They are never
         uploaded anywhere.</li>
@@ -106,16 +107,18 @@
         <li><strong>Open-Meteo</strong> (<a href="https://open-meteo.com">open-meteo.com</a>)
         — to fetch historical outdoor temperatures for the temperature
         correlation feature. Open-Meteo is a free open-source weather API
-        that requires no account. Only a city name (derived from your meter
-        address) is sent to resolve coordinates; no other personal data is
-        transmitted.</li>
+        that requires no account. Only a city name and, when available, postal
+        code derived from your meter address are used to resolve Belgian
+        weather coordinates; no Fluvius credentials, meter identifiers, or
+        consumption readings are sent to Open-Meteo.</li>
     </ul>
 
     <h2>How to delete all your data</h2>
     <p>Open EnergyBe → Profile → <strong>Delete Account &amp; Data</strong>.
-    This permanently removes all credentials, meter identifiers, cached energy
-    data, and preferences from your device immediately. Nothing is stored
-    elsewhere to delete.</p>
+    This permanently removes all credentials, refresh tokens, meter details,
+    cached energy and weather data, tariff settings, widget data, and preferences
+    from your device immediately. Nothing is stored on an EnergyBe server to
+    delete.</p>
 
     <hr>
 
