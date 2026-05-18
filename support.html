@@ -1,320 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EnergyBe — Support</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f2f2f7;
-            color: #1c1c1e;
-            padding: 40px 20px;
-        }
-        .card {
-            background: #ffffff;
-            border-radius: 16px;
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 40px;
-        }
-        h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
-        .subtitle { font-size: 14px; color: #8e8e93; margin-bottom: 28px; }
-        h2 {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #8e8e93;
-            margin: 28px 0 10px;
-        }
-        p, li {
-            font-size: 15px;
-            line-height: 1.65;
-            color: #3a3a3c;
-        }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 6px; }
-        strong { color: #1c1c1e; font-weight: 600; }
-        a { color: #007aff; text-decoration: none; }
-        .badge {
-            display: inline-block;
-            background: #e8f4ff;
-            color: #007aff;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-bottom: 28px;
-        }
-        hr { border: none; border-top: 1px solid #e5e5ea; margin: 28px 0; }
-        code {
-            font-family: ui-monospace, "SF Mono", Menlo, monospace;
-            font-size: 13px;
-            background: #f2f2f7;
-            padding: 1px 5px;
-            border-radius: 4px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EnergyBe — Support</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f2f2f7;
+  color: #1c1c1e;
+  padding: 40px 20px;
+}
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px;
+}
+h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+.subtitle { font-size: 14px; color: #8e8e93; margin-bottom: 28px; }
+h2 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8e8e93;
+  margin: 28px 0 10px;
+}
+p, li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #3a3a3c;
+}
+ul { padding-left: 20px; }
+li { margin-bottom: 6px; }
+strong { color: #1c1c1e; font-weight: 600; }
+a { color: #007aff; text-decoration: none; }
+.badge {
+  display: inline-block;
+  background: #e8f4ff;
+  color: #007aff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+}
+hr { border: none; border-top: 1px solid #e5e5ea; margin: 28px 0; }
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  background: #f2f2f7;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
 
-        /* FAQ accordion */
-        details {
-            border: 1px solid #e5e5ea;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-        summary {
-            font-size: 15px;
-            font-weight: 600;
-            color: #1c1c1e;
-            padding: 14px 16px;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-        }
-        summary::-webkit-details-marker { display: none; }
-        summary::after {
-            content: "+";
-            font-size: 20px;
-            font-weight: 300;
-            color: #007aff;
-            flex-shrink: 0;
-            margin-left: 12px;
-            transition: transform 0.2s;
-        }
-        details[open] summary::after {
-            transform: rotate(45deg);
-        }
-        .faq-body {
-            padding: 0 16px 16px;
-            font-size: 15px;
-            line-height: 1.65;
-            color: #3a3a3c;
-            border-top: 1px solid #f2f2f7;
-        }
-        .faq-body p { margin-top: 12px; }
-        .faq-body ul { padding-left: 20px; margin-top: 8px; }
-        .faq-body li { margin-bottom: 4px; }
+/* FAQ accordion */
+details {
+  border: 1px solid #e5e5ea;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+summary {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1c1c1e;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: "+";
+  font-size: 20px;
+  font-weight: 300;
+  color: #007aff;
+  flex-shrink: 0;
+  margin-left: 12px;
+  transition: transform 0.2s;
+}
+details[open] summary::after { transform: rotate(45deg); }
+.faq-body {
+  padding: 0 16px 16px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #3a3a3c;
+  border-top: 1px solid #f2f2f7;
+}
+.faq-body p { margin-top: 12px; }
+.faq-body ul { padding-left: 20px; margin-top: 8px; }
+.faq-body li { margin-bottom: 4px; }
 
-        /* Contact button */
-        .contact-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: #007aff;
-            color: #fff;
-            font-size: 15px;
-            font-weight: 600;
-            padding: 12px 22px;
-            border-radius: 12px;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-        .contact-btn:hover { background: #0062cc; }
+/* Contact buttons */
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #007aff;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 22px;
+  border-radius: 12px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+.contact-btn:hover { opacity: 0.85; }
 
-        /* Steps */
-        .steps { padding-left: 0; list-style: none; counter-reset: step; }
-        .steps li {
-            counter-increment: step;
-            padding: 10px 0 10px 44px;
-            position: relative;
-            border-bottom: 1px solid #f2f2f7;
-        }
-        .steps li:last-child { border-bottom: none; }
-        .steps li::before {
-            content: counter(step);
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 28px;
-            height: 28px;
-            background: #e8f4ff;
-            color: #007aff;
-            font-size: 13px;
-            font-weight: 700;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-    </style>
+/* Steps */
+.steps { padding-left: 0; list-style: none; counter-reset: step; }
+.steps li {
+  counter-increment: step;
+  padding: 10px 0 10px 44px;
+  position: relative;
+  border-bottom: 1px solid #f2f2f7;
+}
+.steps li:last-child { border-bottom: none; }
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 28px;
+  height: 28px;
+  background: #e8f4ff;
+  color: #007aff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Language switcher */
+.lang-switcher {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.lang-btn {
+  background: none;
+  border: 1px solid #e5e5ea;
+  color: #8e8e93;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.lang-btn:hover { border-color: #007aff; color: #007aff; }
+.lang-btn.active {
+  background: #007aff;
+  border-color: #007aff;
+  color: #fff;
+}
+</style>
 </head>
 <body>
 <div class="card">
 
-    <h1>EnergyBe</h1>
-    <p class="subtitle">Support · Version 1.0</p>
-    <span class="badge">Free · No account required for demo</span>
+  <div class="lang-switcher">
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">NL</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+  </div>
 
-    <h2>About the app</h2>
-    <p>EnergyBe is a free, non-commercial iOS app for Belgian households that
-    visualises electricity and gas consumption from Fluvius smart meters.
-    It has no backend server — all data stays on your device.</p>
+  <h1>EnergyBe</h1>
+  <p class="subtitle" data-i18n="subtitle"></p>
+  <span class="badge" data-i18n="badge"></span>
 
-    <hr>
+  <h2 data-i18n="aboutTitle"></h2>
+  <p data-i18n-html="aboutText"></p>
 
-    <h2>Getting started</h2>
-    <ol class="steps">
-        <li>Open the app and tap <strong>Sign In</strong>.</li>
-        <li>Enter your <strong>mijn.fluvius.be</strong> email and password.
-            Don't have an account? <a href="https://mijn.fluvius.be">Register on Fluvius</a>.</li>
-        <li>EnergyBe will automatically discover your linked smart meters.</li>
-        <li>Your electricity and gas data loads within a few seconds.</li>
-    </ol>
+  <hr>
 
-    <p style="margin-top:12px;">Want to explore first?
-    Tap <strong>Try Demo</strong> on the login screen to see the app with
-    realistic Belgian sample data — no Fluvius account needed.</p>
+  <h2 data-i18n="gettingStartedTitle"></h2>
+  <ol class="steps">
+    <li data-i18n-html="step1"></li>
+    <li data-i18n-html="step2"></li>
+    <li data-i18n-html="step3"></li>
+    <li data-i18n-html="step4"></li>
+  </ol>
+  <p style="margin-top:12px;" data-i18n-html="demoText"></p>
 
-    <hr>
+  <hr>
 
-    <h2>Frequently asked questions</h2>
+  <h2 data-i18n="faqTitle"></h2>
 
-    <details>
-        <summary>Why does sign-in fail with "Invalid email or password"?</summary>
-        <div class="faq-body">
-            <p>EnergyBe uses the same credentials as
-            <a href="https://mijn.fluvius.be">mijn.fluvius.be</a>.
-            Things to try:</p>
-            <ul>
-                <li>Confirm you can log in on mijn.fluvius.be in Safari.</li>
-                <li>Check for a leading or trailing space in your password.</li>
-                <li>If you recently changed your Fluvius password, use the new one.</li>
-                <li>Reset your password on mijn.fluvius.be if needed.</li>
-            </ul>
-        </div>
-    </details>
+  <details>
+    <summary data-i18n="faq1q"></summary>
+    <div class="faq-body" data-i18n-html="faq1a"></div>
+  </details>
+  <details>
+    <summary data-i18n="faq2q"></summary>
+    <div class="faq-body" data-i18n-html="faq2a"></div>
+  </details>
+  <details>
+    <summary data-i18n="faq3q"></summary>
+    <div class="faq-body" data-i18n-html="faq3a"></div>
+  </details>
+  <details>
+    <summary data-i18n="faq4q"></summary>
+    <div class="faq-body" data-i18n-html="faq4a"></div>
+  </details>
+  <details>
+    <summary data-i18n="faq5q"></summary>
+    <div class="faq-body" data-i18n-html="faq5a"></div>
+  </details>
+  <details>
+    <summary data-i18n="faq6q"></summary>
+    <div class="faq-body" data-i18n-html="faq6a"></div>
+  </details>
+  <details>
+    <summary data-i18n="faq7q"></summary>
+    <div class="faq-body" data-i18n-html="faq7a"></div>
+  </details>
+  <details>
+    <summary data-i18n="faq8q"></summary>
+    <div class="faq-body" data-i18n-html="faq8a"></div>
+  </details>
+  <details>
+    <summary data-i18n="faq9q"></summary>
+    <div class="faq-body" data-i18n-html="faq9a"></div>
+  </details>
+  <details>
+    <summary data-i18n="faq10q"></summary>
+    <div class="faq-body" data-i18n-html="faq10a"></div>
+  </details>
 
-    <details>
-        <summary>No meters were found after signing in. What now?</summary>
-        <div class="faq-body">
-            <p>EnergyBe requires at least one digital smart meter linked to
-            your Fluvius account. Analogue or not-yet-activated meters are
-            not supported. Verify your meters are visible on mijn.fluvius.be
-            under "Mijn verbruik". If they are, please contact us so we can
-            investigate.</p>
-        </div>
-    </details>
+  <hr>
 
-    <details>
-        <summary>My data looks empty or stops at a recent date.</summary>
-        <div class="faq-body">
-            <p>Fluvius typically makes meter data available with a
-            <strong>24–48 hour delay</strong>. Data for yesterday may not
-            yet be on their servers. Pull down on the Charts screen to
-            force a refresh. If the gap is longer than 3 days, check
-            mijn.fluvius.be directly to see whether Fluvius is reporting
-            a communication issue with your meter.</p>
-        </div>
-    </details>
+  <h2 data-i18n="contactTitle"></h2>
+  <p data-i18n-html="contactText"></p>
+  <a class="contact-btn" href="mailto:energybeapp@gmail.com">
+    ✉ energybeapp@gmail.com
+  </a>
+  <a class="contact-btn"
+     href="https://github.com/eelcoder/energybe-public/issues/new?template=bug_report.md"
+     style="background:#1c1c1e;"
+     data-i18n="bugBtn"></a>
+  <a class="contact-btn"
+     href="https://github.com/eelcoder/energybe-public/issues/new?template=feature_request.md"
+     style="background:#34c759;"
+     data-i18n="featureBtn"></a>
 
-    <details>
-        <summary>Gas data is missing in the Day view.</summary>
-        <div class="faq-body">
-            <p>This is by design. Fluvius does not provide hourly gas
-            readings — gas is metered at daily resolution. EnergyBe shows
-            gas data from the <strong>Week</strong> granularity onwards.</p>
-        </div>
-    </details>
+  <hr>
 
-    <details>
-        <summary>Can I use the app if my energy supplier is not Fluvius?</summary>
-        <div class="faq-body">
-            <p>Yes — in Belgium, <strong>Fluvius</strong> is the distribution
-            system operator for Flanders and manages the smart meter network
-            regardless of which energy supplier you've chosen. If you live
-            in Flanders and have a digital meter, you have a Fluvius account.</p>
-            <p>Wallonia (ORES / RESA) and Brussels (Sibelga) are not
-            currently supported.</p>
-        </div>
-    </details>
-
-    <details>
-        <summary>How do I enable Face ID / Touch ID lock?</summary>
-        <div class="faq-body">
-            <p>Go to <strong>Profile → Privacy → Use Face ID</strong> (or
-            Touch ID). After enabling it, the app will ask you to
-            authenticate each time it comes back to the foreground.
-            You can disable it at any time from the same screen.</p>
-        </div>
-    </details>
-
-    <details>
-        <summary>How do I set my electricity and gas tariff rates?</summary>
-        <div class="faq-body">
-            <p>Go to <strong>Profile → Energy Rates</strong>. Enter the
-            rates from your energy supplier's invoice (€/kWh). EnergyBe
-            ships with Belgian average rates as defaults. Tap
-            <strong>Reset to Belgian averages</strong> at any time to
-            revert.</p>
-        </div>
-    </details>
-
-    <details>
-        <summary>How do I completely remove my data from the app?</summary>
-        <div class="faq-body">
-            <p>Go to <strong>Profile → Delete Account &amp; Data</strong>.
-            This permanently removes all credentials, meter identifiers,
-            cached energy readings, and preferences from your device.
-            Because EnergyBe has no backend, there is nothing stored
-            elsewhere to delete.</p>
-        </div>
-    </details>
-
-    <details>
-        <summary>Does EnergyBe send my data anywhere?</summary>
-        <div class="faq-body">
-            <p>No. EnergyBe has no developer-controlled server. Your
-            credentials are transmitted only to <code>login.fluvius.be</code>
-            over HTTPS, and your meter data is cached on your device only.
-            See the full <a href="privacy.html">Privacy Policy</a> for
-            details.</p>
-        </div>
-    </details>
-
-    <details>
-    <summary>The widget shows no data.</summary>
-    <div class="faq-body">
-        <p>The widget is populated from the app's local cache. Open EnergyBe,
-        go to the Charts screen, and pull down to refresh your data. The widget
-        should update shortly after the refresh completes.</p>
-        <p>If it still shows no data, remove the widget from your Home Screen
-        and add it again.</p>
-    </div>
-   </details>
-    
-    <hr>
-
-    <h2>Contact</h2>
-    <p>Couldn't find an answer above? You can reach us by email or file a
-    bug report on GitHub — include your iOS version and a short description
-    of what happened.</p>
-    <a class="contact-btn" href="mailto:energybeapp@gmail.com">
-        ✉ energybeapp@gmail.com
-    </a>
-    <a class="contact-btn" href="https://github.com/eelcoder/energybe-public/issues/new?template=bug_report.md"
-       style="background:#1c1c1e;">
-        🐛 Report a bug on GitHub
-    </a>
-    <a class="contact-btn" href="https://github.com/eelcoder/energybe-public/issues/new?template=feature_request.md"
-       style="background:#34c759;">
-        💡 Request a feature
-    </a>
-
-    <hr>
-
-    <h2>Links</h2>
-    <ul>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="https://mijn.fluvius.be">mijn.fluvius.be</a> — Fluvius customer portal</li>
-        <li><a href="https://github.com/eelcoder/energybe-public">GitHub</a> — public issues &amp; release notes</li>
-    </ul>
+  <h2 data-i18n="linksTitle"></h2>
+  <ul>
+    <li data-i18n-html="linkPrivacyLi"></li>
+    <li data-i18n-html="linkFluviusLi"></li>
+    <li data-i18n-html="linkGithubLi"></li>
+  </ul>
 
 </div>
+
+<script>
+const i18n = {
+  en: {
+    pageTitle: "EnergyBe — Support",
+    subtitle: "Support · Version 1.0",
+    badge: "Free · No account required for demo",
+    aboutTitle: "About the app",
+    aboutText: "EnergyBe is a free, non-commercial iOS app for Belgian households that visualises electricity and gas consumption from Fluvius smart meters. It has no backend server — all data stays on your device.",
+    gettingStartedTitle: "Getting started",
+    step1: `Open the app and tap <strong>Sign In</strong>.`,
+    step2: `Enter your <strong>mijn.fluvius.be</strong> email and password. Don't have an account? <a href="https://mijn.fluvius.be">Register on Fluvius</a>.`,
+    step3: "EnergyBe will automatically discover your linked smart meters.",
+    step4: "Your electricity and gas data loads within a few seconds.",
+    demoText: `Want to explore first? Tap <strong>Try Demo</strong> on the login screen to see the app with realistic Belgian sample data — no Fluvius account needed.`,
+    faqTitle: "Frequently asked questions",
+    faq1q: `Why does sign-in fail with "Invalid email or password"?`,
+    faq1a: `<p>EnergyBe uses the same credentials as <a href="https://mijn.fluvius.be">mijn.fluvius.be</a>. Things to try:</p><ul><li>Confirm you can log in on mijn.fluvius.be in Safari.</li><li>Check for a leading or trailing space in your password.</li><li>If you recently changed your Fluvius password, use the new one.</li><li>Reset your password on mijn.fluvius.be if needed.</li></ul>`,
+    faq2q: "No meters were found after signing in. What now?",
+    faq2a: `<p>EnergyBe requires at least one digital smart meter linked to your Fluvius account. Analogue or not-yet-activated meters are not supported. Verify your meters are visible on mijn.fluvius.be under "Mijn verbruik". If they are, please contact us so we can investigate.</p>`,
+    faq3q: "My data looks empty or stops at a recent date.",
+    faq3a: `<p>Fluvius typically makes meter data available with a <strong>24–48 hour delay</strong>. Data for yesterday may not yet be on their servers. Pull down on the Charts screen to force a refresh. If the gap is longer than 3 days, check mijn.fluvius.be directly to see whether Fluvius is reporting a communication issue with your meter.</p>`,
+    faq4q: "Gas data is missing in the Day view.",
+    faq4a: `<p>This is by design. Fluvius does not provide hourly gas readings — gas is metered at daily resolution. EnergyBe shows gas data from the <strong>Week</strong> granularity onwards.</p>`,
+    faq5q: "Can I use the app if my energy supplier is not Fluvius?",
+    faq5a: `<p>Yes — in Belgium, <strong>Fluvius</strong> is the distribution system operator for Flanders and manages the smart meter network regardless of which energy supplier you've chosen. If you live in Flanders and have a digital meter, you have a Fluvius account.</p><p>Wallonia (ORES / RESA) and Brussels (Sibelga) are not currently supported.</p>`,
+    faq6q: "How do I enable Face ID / Touch ID lock?",
+    faq6a: `<p>Go to <strong>Profile → Privacy → Use Face ID</strong> (or Touch ID). After enabling it, the app will ask you to authenticate each time it comes back to the foreground. You can disable it at any time from the same screen.</p>`,
+    faq7q: "How do I set my electricity and gas tariff rates?",
+    faq7a: `<p>Go to <strong>Profile → Energy Rates</strong>. Enter the rates from your energy supplier's invoice (€/kWh). EnergyBe ships with Belgian average rates as defaults. Tap <strong>Reset to Belgian averages</strong> at any time to revert.</p>`,
+    faq8q: "How do I completely remove my data from the app?",
+    faq8a: `<p>Go to <strong>Profile → Delete Account &amp; Data</strong>. This permanently removes all credentials, meter identifiers, cached energy readings, and preferences from your device. Because EnergyBe has no backend, there is nothing stored elsewhere to delete.</p>`,
+    faq9q: "Does EnergyBe send my data anywhere?",
+    faq9a: `<p>No. EnergyBe has no developer-controlled server. Your credentials are transmitted only to <code>login.fluvius.be</code> over HTTPS, and your meter data is cached on your device only. See the full <a href="privacy.html">Privacy Policy</a> for details.</p>`,
+    faq10q: "The widget shows no data.",
+    faq10a: `<p>The widget is populated from the app's local cache. Open EnergyBe, go to the Charts screen, and pull down to refresh your data. The widget should update shortly after the refresh completes.</p><p>If it still shows no data, remove the widget from your Home Screen and add it again.</p>`,
+    contactTitle: "Contact",
+    contactText: "Couldn't find an answer above? You can reach us by email or file a bug report on GitHub — include your iOS version and a short description of what happened.",
+    bugBtn: "🐛 Report a bug on GitHub",
+    featureBtn: "💡 Request a feature",
+    linksTitle: "Links",
+    linkPrivacyLi: `<a href="privacy.html">Privacy Policy</a>`,
+    linkFluviusLi: `<a href="https://mijn.fluvius.be">mijn.fluvius.be</a> — Fluvius customer portal`,
+    linkGithubLi: `<a href="https://github.com/eelcoder/energybe-public">GitHub</a> — public issues &amp; release notes`,
+  },
+
+  nl: {
+    pageTitle: "EnergyBe — Ondersteuning",
+    subtitle: "Ondersteuning · Versie 1.0",
+    badge: "Gratis · Geen account vereist voor demo",
+    aboutTitle: "Over de app",
+    aboutText: "EnergyBe is een gratis, niet-commerciële iOS-app voor Belgische huishoudens die het elektriciteits- en gasverbruik van Fluvius slimme meters visualiseert. Er is geen backend-server — alle gegevens blijven op uw toestel.",
+    gettingStartedTitle: "Aan de slag",
+    step1: `Open de app en tik op <strong>Aanmelden</strong>.`,
+    step2: `Voer uw e-mailadres en wachtwoord van <strong>mijn.fluvius.be</strong> in. Nog geen account? <a href="https://mijn.fluvius.be">Registreer op Fluvius</a>.`,
+    step3: "EnergyBe ontdekt automatisch uw gekoppelde slimme meters.",
+    step4: "Uw elektriciteits- en gasgegevens worden binnen enkele seconden geladen.",
+    demoText: `Wilt u eerst verkennen? Tik op <strong>Demo proberen</strong> op het aanmeldingsscherm om de app te zien met realistische Belgische voorbeeldgegevens — geen Fluvius-account nodig.`,
+    faqTitle: "Veelgestelde vragen",
+    faq1q: `Waarom mislukt de aanmelding met "Ongeldig e-mailadres of wachtwoord"?`,
+    faq1a: `<p>EnergyBe gebruikt dezelfde inloggegevens als <a href="https://mijn.fluvius.be">mijn.fluvius.be</a>. Wat u kunt proberen:</p><ul><li>Controleer of u kunt inloggen op mijn.fluvius.be in Safari.</li><li>Controleer op een spatie voor of achter uw wachtwoord.</li><li>Als u uw Fluvius-wachtwoord onlangs hebt gewijzigd, gebruik dan het nieuwe.</li><li>Stel uw wachtwoord opnieuw in op mijn.fluvius.be indien nodig.</li></ul>`,
+    faq2q: "Er zijn geen meters gevonden na het aanmelden. Wat nu?",
+    faq2a: `<p>EnergyBe vereist minstens één digitale slimme meter gekoppeld aan uw Fluvius-account. Analoge of nog niet geactiveerde meters worden niet ondersteund. Controleer of uw meters zichtbaar zijn op mijn.fluvius.be onder "Mijn verbruik". Als dat zo is, neem dan contact met ons op zodat we dit kunnen onderzoeken.</p>`,
+    faq3q: "Mijn gegevens zien er leeg uit of stoppen bij een recente datum.",
+    faq3a: `<p>Fluvius maakt metergegevens doorgaans beschikbaar met een vertraging van <strong>24–48 uur</strong>. Gegevens van gisteren zijn mogelijk nog niet op hun servers. Trek het Grafieken-scherm naar beneden om een vernieuwing te forceren. Als de kloof meer dan 3 dagen bedraagt, controleer dan mijn.fluvius.be rechtstreeks om te zien of Fluvius een communicatieprobleem met uw meter meldt.</p>`,
+    faq4q: "Gasgegevens ontbreken in de dagweergave.",
+    faq4a: `<p>Dit is by design. Fluvius levert geen uurlijkse gasmetingen — gas wordt op dagelijkse resolutie gemeten. EnergyBe toont gasgegevens vanaf de granulariteit <strong>Week</strong>.</p>`,
+    faq5q: "Kan ik de app gebruiken als mijn energieleverancier niet Fluvius is?",
+    faq5a: `<p>Ja — in België is <strong>Fluvius</strong> de distributienetbeheerder voor Vlaanderen en beheert het slimme-meternetwerk, ongeacht welke energieleverancier u hebt gekozen. Als u in Vlaanderen woont en een digitale meter hebt, hebt u een Fluvius-account.</p><p>Wallonië (ORES / RESA) en Brussel (Sibelga) worden momenteel niet ondersteund.</p>`,
+    faq6q: "Hoe schakel ik Face ID / Touch ID vergrendeling in?",
+    faq6a: `<p>Ga naar <strong>Profiel → Privacy → Face ID gebruiken</strong> (of Touch ID). Na het inschakelen zal de app u vragen om te authenticeren elke keer dat ze naar de voorgrond terugkeert. U kunt dit op elk moment uitschakelen via hetzelfde scherm.</p>`,
+    faq7q: "Hoe stel ik mijn elektriciteits- en gastarieven in?",
+    faq7a: `<p>Ga naar <strong>Profiel → Energietarieven</strong>. Voer de tarieven in van de factuur van uw energieleverancier (€/kWh). EnergyBe wordt geleverd met Belgische gemiddelde tarieven als standaard. Tik op <strong>Terugzetten naar Belgische gemiddelden</strong> om op elk moment terug te keren.</p>`,
+    faq8q: "Hoe verwijder ik al mijn gegevens uit de app?",
+    faq8a: `<p>Ga naar <strong>Profiel → Account &amp; Gegevens verwijderen</strong>. Dit verwijdert permanent alle inloggegevens, meter-ID's, gecachte energiemetingen en voorkeuren van uw toestel. Omdat EnergyBe geen backend heeft, is er niets elders opgeslagen om te verwijderen.</p>`,
+    faq9q: "Stuurt EnergyBe mijn gegevens ergens naartoe?",
+    faq9a: `<p>Nee. EnergyBe heeft geen door de ontwikkelaar beheerde server. Uw inloggegevens worden alleen verzonden naar <code>login.fluvius.be</code> via HTTPS, en uw metergegevens worden alleen op uw toestel opgeslagen. Raadpleeg het volledige <a href="privacy.html">Privacybeleid</a> voor meer informatie.</p>`,
+    faq10q: "De widget toont geen gegevens.",
+    faq10a: `<p>De widget wordt gevuld vanuit de lokale cache van de app. Open EnergyBe, ga naar het Grafieken-scherm en trek naar beneden om uw gegevens te vernieuwen. De widget zou kort na de vernieuwing moeten updaten.</p><p>Als er nog steeds geen gegevens worden getoond, verwijder de widget van uw beginscherm en voeg hem opnieuw toe.</p>`,
+    contactTitle: "Contact",
+    contactText: "Geen antwoord gevonden hierboven? U kunt ons bereiken via e-mail of een bugrapport indienen op GitHub — voeg uw iOS-versie en een korte beschrijving van het probleem toe.",
+    bugBtn: "🐛 Bug melden op GitHub",
+    featureBtn: "💡 Functie aanvragen",
+    linksTitle: "Links",
+    linkPrivacyLi: `<a href="privacy.html">Privacybeleid</a>`,
+    linkFluviusLi: `<a href="https://mijn.fluvius.be">mijn.fluvius.be</a> — Fluvius klantportaal`,
+    linkGithubLi: `<a href="https://github.com/eelcoder/energybe-public">GitHub</a> — publieke issues &amp; release-opmerkingen`,
+  },
+
+  fr: {
+    pageTitle: "EnergyBe — Assistance",
+    subtitle: "Assistance · Version 1.0",
+    badge: "Gratuit · Aucun compte requis pour la démo",
+    aboutTitle: "À propos de l'application",
+    aboutText: "EnergyBe est une application iOS gratuite et non commerciale pour les ménages belges qui visualise la consommation d'électricité et de gaz à partir des compteurs intelligents Fluvius. Elle n'a pas de serveur backend — toutes les données restent sur votre appareil.",
+    gettingStartedTitle: "Premiers pas",
+    step1: `Ouvrez l'application et appuyez sur <strong>Se connecter</strong>.`,
+    step2: `Saisissez votre adresse e-mail et mot de passe <strong>mijn.fluvius.be</strong>. Pas encore de compte ? <a href="https://mijn.fluvius.be">Inscrivez-vous sur Fluvius</a>.`,
+    step3: "EnergyBe découvrira automatiquement vos compteurs intelligents associés.",
+    step4: "Vos données d'électricité et de gaz se chargent en quelques secondes.",
+    demoText: `Vous souhaitez d'abord explorer ? Appuyez sur <strong>Essayer la démo</strong> sur l'écran de connexion pour voir l'application avec des données belges réalistes — aucun compte Fluvius requis.`,
+    faqTitle: "Questions fréquentes",
+    faq1q: `Pourquoi la connexion échoue-t-elle avec « Adresse e-mail ou mot de passe invalide » ?`,
+    faq1a: `<p>EnergyBe utilise les mêmes identifiants que <a href="https://mijn.fluvius.be">mijn.fluvius.be</a>. Essayez ceci :</p><ul><li>Vérifiez que vous pouvez vous connecter sur mijn.fluvius.be dans Safari.</li><li>Recherchez un espace avant ou après votre mot de passe.</li><li>Si vous avez récemment modifié votre mot de passe Fluvius, utilisez le nouveau.</li><li>Réinitialisez votre mot de passe sur mijn.fluvius.be si nécessaire.</li></ul>`,
+    faq2q: "Aucun compteur n'a été trouvé après la connexion. Que faire ?",
+    faq2a: `<p>EnergyBe nécessite au moins un compteur intelligent numérique associé à votre compte Fluvius. Les compteurs analogiques ou non encore activés ne sont pas pris en charge. Vérifiez que vos compteurs sont visibles sur mijn.fluvius.be sous « Mijn verbruik ». Si c'est le cas, contactez-nous afin que nous puissions enquêter.</p>`,
+    faq3q: "Mes données semblent vides ou s'arrêtent à une date récente.",
+    faq3a: `<p>Fluvius met généralement les données de compteur à disposition avec un délai de <strong>24 à 48 heures</strong>. Les données d'hier ne sont peut-être pas encore sur leurs serveurs. Faites glisser vers le bas sur l'écran Graphiques pour forcer une actualisation. Si l'écart est supérieur à 3 jours, consultez directement mijn.fluvius.be pour vérifier si Fluvius signale un problème de communication avec votre compteur.</p>`,
+    faq4q: "Les données de gaz sont absentes dans la vue Jour.",
+    faq4a: `<p>C'est voulu. Fluvius ne fournit pas de relevés horaires de gaz — le gaz est mesuré à la résolution journalière. EnergyBe affiche les données de gaz à partir de la granularité <strong>Semaine</strong>.</p>`,
+    faq5q: "Puis-je utiliser l'application si mon fournisseur d'énergie n'est pas Fluvius ?",
+    faq5a: `<p>Oui — en Belgique, <strong>Fluvius</strong> est le gestionnaire du réseau de distribution pour la Flandre et gère le réseau de compteurs intelligents, quel que soit votre fournisseur d'énergie. Si vous vivez en Flandre et avez un compteur numérique, vous avez un compte Fluvius.</p><p>La Wallonie (ORES / RESA) et Bruxelles (Sibelga) ne sont actuellement pas prises en charge.</p>`,
+    faq6q: "Comment activer le verrouillage Face ID / Touch ID ?",
+    faq6a: `<p>Allez dans <strong>Profil → Confidentialité → Utiliser Face ID</strong> (ou Touch ID). Après activation, l'application vous demandera de vous authentifier à chaque retour au premier plan. Vous pouvez le désactiver à tout moment depuis le même écran.</p>`,
+    faq7q: "Comment définir mes tarifs d'électricité et de gaz ?",
+    faq7a: `<p>Allez dans <strong>Profil → Tarifs énergétiques</strong>. Saisissez les tarifs de la facture de votre fournisseur d'énergie (€/kWh). EnergyBe est livré avec les tarifs moyens belges par défaut. Appuyez sur <strong>Réinitialiser aux moyennes belges</strong> à tout moment pour revenir aux valeurs par défaut.</p>`,
+    faq8q: "Comment supprimer complètement mes données de l'application ?",
+    faq8a: `<p>Allez dans <strong>Profil → Supprimer le compte &amp; les données</strong>. Cela supprime définitivement tous les identifiants, les identifiants de compteur, les relevés d'énergie mis en cache et les préférences de votre appareil. Comme EnergyBe n'a pas de backend, il n'y a rien d'autre à supprimer.</p>`,
+    faq9q: "EnergyBe envoie-t-il mes données quelque part ?",
+    faq9a: `<p>Non. EnergyBe n'a pas de serveur contrôlé par le développeur. Vos identifiants ne sont transmis qu'à <code>login.fluvius.be</code> via HTTPS, et vos données de compteur sont uniquement mises en cache sur votre appareil. Consultez la <a href="privacy.html">Politique de confidentialité</a> complète pour plus de détails.</p>`,
+    faq10q: "Le widget n'affiche aucune donnée.",
+    faq10a: `<p>Le widget est alimenté par le cache local de l'application. Ouvrez EnergyBe, allez à l'écran Graphiques et faites glisser vers le bas pour actualiser vos données. Le widget devrait se mettre à jour peu après la fin de l'actualisation.</p><p>S'il n'affiche toujours pas de données, retirez le widget de votre écran d'accueil et ajoutez-le à nouveau.</p>`,
+    contactTitle: "Contact",
+    contactText: "Vous n'avez pas trouvé de réponse ci-dessus ? Vous pouvez nous contacter par e-mail ou déposer un rapport de bug sur GitHub — indiquez votre version iOS et une brève description de ce qui s'est passé.",
+    bugBtn: "🐛 Signaler un bug sur GitHub",
+    featureBtn: "💡 Suggérer une fonctionnalité",
+    linksTitle: "Liens",
+    linkPrivacyLi: `<a href="privacy.html">Politique de confidentialité</a>`,
+    linkFluviusLi: `<a href="https://mijn.fluvius.be">mijn.fluvius.be</a> — portail client Fluvius`,
+    linkGithubLi: `<a href="https://github.com/eelcoder/energybe-public">GitHub</a> — problèmes publics &amp; notes de version`,
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+
+  // Update active button state
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Update <html lang="…">
+  document.documentElement.lang = lang;
+
+  // Update <title>
+  document.title = strings.pageTitle;
+
+  // Update plain text content
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+
+  // Update HTML content
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+
+  try { localStorage.setItem('energybe-lang', lang); } catch (_) {}
+}
+
+// Initialise on load
+(function () {
+  let lang = 'en';
+  try { lang = localStorage.getItem('energybe-lang') || 'en'; } catch (_) {}
+  if (!i18n[lang]) lang = 'en';
+  setLang(lang);
+})();
+</script>
 </body>
 </html>
