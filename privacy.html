@@ -1,140 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EnergyBe — Privacy Policy</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f2f2f7;
-            color: #1c1c1e;
-            padding: 40px 20px;
-        }
-        .card {
-            background: #ffffff;
-            border-radius: 16px;
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 40px;
-        }
-        h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
-        .subtitle { font-size: 14px; color: #8e8e93; margin-bottom: 36px; }
-        h2 {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #8e8e93;
-            margin: 28px 0 10px;
-        }
-        p, li {
-            font-size: 15px;
-            line-height: 1.65;
-            color: #3a3a3c;
-        }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 6px; }
-        strong { color: #1c1c1e; font-weight: 600; }
-        a { color: #007aff; text-decoration: none; }
-        .badge {
-            display: inline-block;
-            background: #e8f4ff;
-            color: #007aff;
-            font-size: 13px;
-            font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-bottom: 28px;
-        }
-        hr { border: none; border-top: 1px solid #e5e5ea; margin: 28px 0; }
-        code {
-            font-family: ui-monospace, "SF Mono", Menlo, monospace;
-            font-size: 13px;
-            background: #f2f2f7;
-            padding: 1px 5px;
-            border-radius: 4px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EnergyBe — Privacy Policy</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f2f2f7;
+  color: #1c1c1e;
+  padding: 40px 20px;
+}
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px;
+}
+h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+.subtitle { font-size: 14px; color: #8e8e93; margin-bottom: 36px; }
+h2 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8e8e93;
+  margin: 28px 0 10px;
+}
+p, li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #3a3a3c;
+}
+ul { padding-left: 20px; }
+li { margin-bottom: 6px; }
+strong { color: #1c1c1e; font-weight: 600; }
+a { color: #007aff; text-decoration: none; }
+.badge {
+  display: inline-block;
+  background: #e8f4ff;
+  color: #007aff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 28px;
+}
+hr { border: none; border-top: 1px solid #e5e5ea; margin: 28px 0; }
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  background: #f2f2f7;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+/* Language switcher */
+.lang-switcher {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.lang-btn {
+  background: none;
+  border: 1px solid #e5e5ea;
+  color: #8e8e93;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.lang-btn:hover { border-color: #007aff; color: #007aff; }
+.lang-btn.active {
+  background: #007aff;
+  border-color: #007aff;
+  color: #fff;
+}
+</style>
 </head>
 <body>
 <div class="card">
 
-    <h1>EnergyBe</h1>
-    <p class="subtitle">Privacy Policy · Last updated May 2026</p>
-    <span class="badge">No tracking · No ads · No backend</span>
+  <div class="lang-switcher">
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" data-lang="nl" onclick="setLang('nl')">NL</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+  </div>
 
-    <h2>What EnergyBe is</h2>
-    <p>EnergyBe is a free, non-commercial iOS app that lets Belgian households
-    visualise their electricity and gas consumption from their Fluvius smart
-    meter. It was built as a personal project with no business model, no
-    subscriptions, and no advertising. All data stays on your device.</p>
+  <h1>EnergyBe</h1>
+  <p class="subtitle" data-i18n="subtitle"></p>
+  <span class="badge" data-i18n="badge"></span>
 
-    <h2>Data stored on your device</h2>
-    <ul>
-        <li><strong>Fluvius credentials</strong> — your email address and
-        password are stored in the iOS Keychain. They are transmitted only
-        to <code>login.fluvius.be</code> over HTTPS and never to any
-        developer-controlled server.</li>
-        <li><strong>Meter details</strong> — EAN codes, meter serial
-        numbers, meter type/status information, the linked service address,
-        city, and postal code from your Fluvius account are stored on-device
-        in the iOS Keychain to identify your meters and show local comparisons.
-        They are never sent to the developer.</li>
-        <li><strong>Energy consumption data</strong> — meter readings fetched
-        from the Fluvius API are cached on your device only. They are never
-        uploaded anywhere.</li>
-        <li><strong>App preferences</strong> — tariff rates, biometric lock
-        setting, and onboarding state are stored in UserDefaults on your
-        device only.</li>
-    </ul>
+  <h2 data-i18n="whatIsTitle"></h2>
+  <p data-i18n-html="whatIsText"></p>
 
-    <h2>What EnergyBe does not do</h2>
-    <ul>
-        <li>Does not send any personal data to the developer or any third party</li>
-        <li>Does not use advertising, analytics, or crash-reporting SDKs</li>
-        <li>Does not have a backend server or database</li>
-        <li>Does not share your data with anyone</li>
-    </ul>
+  <h2 data-i18n="dataStoredTitle"></h2>
+  <ul>
+    <li data-i18n-html="dataItem1"></li>
+    <li data-i18n-html="dataItem2"></li>
+    <li data-i18n-html="dataItem3"></li>
+    <li data-i18n-html="dataItem4"></li>
+  </ul>
 
-    <h2>Third-party services the app contacts</h2>
-    <ul>
-        <li><strong>Fluvius</strong> (<a href="https://fluvius.be">fluvius.be</a>)
-        — to authenticate and fetch your meter data. Governed by
-        <a href="https://www.fluvius.be/nl/privacyverklaring">Fluvius's own
-        privacy policy</a>.</li>
-        <li><strong>Open-Meteo</strong> (<a href="https://open-meteo.com">open-meteo.com</a>)
-        — to fetch historical outdoor temperatures for the temperature
-        correlation feature. Open-Meteo is a free open-source weather API
-        that requires no account. Only a city name and, when available, postal
-        code derived from your meter address are used to resolve Belgian
-        weather coordinates; no Fluvius credentials, meter identifiers, or
-        consumption readings are sent to Open-Meteo.</li>
-    </ul>
+  <h2 data-i18n="doesNotTitle"></h2>
+  <ul>
+    <li data-i18n="doesNot1"></li>
+    <li data-i18n="doesNot2"></li>
+    <li data-i18n="doesNot3"></li>
+    <li data-i18n="doesNot4"></li>
+  </ul>
 
-    <h2>How to delete all your data</h2>
-    <p>Open EnergyBe → Profile → <strong>Delete Account &amp; Data</strong>.
-    This permanently removes all credentials, refresh tokens, meter details,
-    cached energy and weather data, tariff settings, widget data, and preferences
-    from your device immediately. Nothing is stored on an EnergyBe server to
-    delete.</p>
+  <h2 data-i18n="thirdPartyTitle"></h2>
+  <ul>
+    <li data-i18n-html="thirdParty1"></li>
+    <li data-i18n-html="thirdParty2"></li>
+  </ul>
 
-    <hr>
+  <h2 data-i18n="deleteTitle"></h2>
+  <p data-i18n-html="deleteText"></p>
 
-    <h2>Children</h2>
-    <p>EnergyBe is not directed at children under 13 and does not knowingly
-    collect data from them.</p>
+  <hr>
 
-    <h2>Changes to this policy</h2>
-    <p>If this policy changes materially, the "Last updated" date above will
-    be updated. Because EnergyBe has no backend, you will not receive a
-    push notification — check this page when updating the app.</p>
+  <h2 data-i18n="childrenTitle"></h2>
+  <p data-i18n-html="childrenText"></p>
 
-    <h2>Contact</h2>
-    <p>Questions or concerns?
-    Email <a href="mailto:energybeapp@gmail.com">energybeapp@gmail.com</a></p>
+  <h2 data-i18n="changesTitle"></h2>
+  <p data-i18n-html="changesText"></p>
+
+  <h2 data-i18n="contactTitle"></h2>
+  <p data-i18n-html="contactText"></p>
 
 </div>
+
+<script>
+const i18n = {
+  en: {
+    pageTitle: "EnergyBe — Privacy Policy",
+    subtitle: "Privacy Policy · Last updated May 2026",
+    badge: "No tracking · No ads · No backend",
+    whatIsTitle: "What EnergyBe is",
+    whatIsText: "EnergyBe is a free, non-commercial iOS app that lets Belgian households visualise their electricity and gas consumption from their Fluvius smart meter. It was built as a personal project with no business model, no subscriptions, and no advertising. All data stays on your device.",
+    dataStoredTitle: "Data stored on your device",
+    dataItem1: `<strong>Fluvius credentials</strong> — your email address and password are stored in the iOS Keychain. They are transmitted only to <code>login.fluvius.be</code> over HTTPS and never to any developer-controlled server.`,
+    dataItem2: `<strong>Meter details</strong> — EAN codes, meter serial numbers, meter type/status information, the linked service address, city, and postal code from your Fluvius account are stored on-device in the iOS Keychain to identify your meters and show local comparisons. They are never sent to the developer.`,
+    dataItem3: `<strong>Energy consumption data</strong> — meter readings fetched from the Fluvius API are cached on your device only. They are never uploaded anywhere.`,
+    dataItem4: `<strong>App preferences</strong> — tariff rates, biometric lock setting, and onboarding state are stored in UserDefaults on your device only.`,
+    doesNotTitle: "What EnergyBe does not do",
+    doesNot1: "Does not send any personal data to the developer or any third party",
+    doesNot2: "Does not use advertising, analytics, or crash-reporting SDKs",
+    doesNot3: "Does not have a backend server or database",
+    doesNot4: "Does not share your data with anyone",
+    thirdPartyTitle: "Third-party services the app contacts",
+    thirdParty1: `<strong>Fluvius</strong> (<a href="https://fluvius.be">fluvius.be</a>) — to authenticate and fetch your meter data. Governed by <a href="https://www.fluvius.be/nl/privacyverklaring">Fluvius's own privacy policy</a>.`,
+    thirdParty2: `<strong>Open-Meteo</strong> (<a href="https://open-meteo.com">open-meteo.com</a>) — to fetch historical outdoor temperatures for the temperature correlation feature. Open-Meteo is a free open-source weather API that requires no account. Only a city name and, when available, postal code derived from your meter address are used to resolve Belgian weather coordinates; no Fluvius credentials, meter identifiers, or consumption readings are sent to Open-Meteo.`,
+    deleteTitle: "How to delete all your data",
+    deleteText: `Open EnergyBe → Profile → <strong>Delete Account &amp; Data</strong>. This permanently removes all credentials, refresh tokens, meter details, cached energy and weather data, tariff settings, widget data, and preferences from your device immediately. Nothing is stored on an EnergyBe server to delete.`,
+    childrenTitle: "Children",
+    childrenText: "EnergyBe is not directed at children under 13 and does not knowingly collect data from them.",
+    changesTitle: "Changes to this policy",
+    changesText: `If this policy changes materially, the "Last updated" date above will be updated. Because EnergyBe has no backend, you will not receive a push notification — check this page when updating the app.`,
+    contactTitle: "Contact",
+    contactText: `Questions or concerns? Email <a href="mailto:energybeapp@gmail.com">energybeapp@gmail.com</a>`,
+  },
+
+  nl: {
+    pageTitle: "EnergyBe — Privacybeleid",
+    subtitle: "Privacybeleid · Laatst bijgewerkt mei 2026",
+    badge: "Geen tracking · Geen advertenties · Geen backend",
+    whatIsTitle: "Wat EnergyBe is",
+    whatIsText: "EnergyBe is een gratis, niet-commerciële iOS-app waarmee Belgische huishoudens hun elektriciteits- en gasverbruik van hun Fluvius slimme meter kunnen visualiseren. Het werd gebouwd als een persoonlijk project zonder businessmodel, abonnementen of reclame. Alle gegevens blijven op uw toestel.",
+    dataStoredTitle: "Gegevens opgeslagen op uw toestel",
+    dataItem1: `<strong>Fluvius-inloggegevens</strong> — uw e-mailadres en wachtwoord worden opgeslagen in de iOS Keychain. Ze worden alleen verzonden naar <code>login.fluvius.be</code> via HTTPS en nooit naar een door de ontwikkelaar beheerde server.`,
+    dataItem2: `<strong>Metergegevens</strong> — EAN-codes, meterserialnummers, meter type/statusinformatie, het gekoppelde serviceadres, de stad en postcode van uw Fluvius-account worden op het toestel opgeslagen in de iOS Keychain om uw meters te identificeren en lokale vergelijkingen te tonen. Ze worden nooit naar de ontwikkelaar verzonden.`,
+    dataItem3: `<strong>Energieverbruiksgegevens</strong> — metermetingen opgehaald via de Fluvius API worden alleen op uw toestel in de cache opgeslagen. Ze worden nooit geüpload.`,
+    dataItem4: `<strong>App-voorkeuren</strong> — tarieven, biometrische vergrendeling en onboarding-status worden alleen opgeslagen in UserDefaults op uw toestel.`,
+    doesNotTitle: "Wat EnergyBe niet doet",
+    doesNot1: "Stuurt geen persoonlijke gegevens naar de ontwikkelaar of derden",
+    doesNot2: "Gebruikt geen reclame-, analytics- of crashrapportage-SDK's",
+    doesNot3: "Heeft geen backend-server of database",
+    doesNot4: "Deelt uw gegevens niet met anderen",
+    thirdPartyTitle: "Externe diensten waarmee de app contact opneemt",
+    thirdParty1: `<strong>Fluvius</strong> (<a href="https://fluvius.be">fluvius.be</a>) — voor authenticatie en het ophalen van uw metergegevens. Beheerd door <a href="https://www.fluvius.be/nl/privacyverklaring">het eigen privacybeleid van Fluvius</a>.`,
+    thirdParty2: `<strong>Open-Meteo</strong> (<a href="https://open-meteo.com">open-meteo.com</a>) — voor het ophalen van historische buitentemperaturen voor de temperatuurcorrelatiefunctie. Open-Meteo is een gratis open-source weer-API waarvoor geen account nodig is. Alleen een plaatsnaam en, indien beschikbaar, de postcode afgeleid van uw meterAdres worden gebruikt om Belgische weercoördinaten te bepalen; er worden geen Fluvius-inloggegevens, meter-ID's of verbruiksmetingen naar Open-Meteo verzonden.`,
+    deleteTitle: "Hoe u al uw gegevens verwijdert",
+    deleteText: `Open EnergyBe → Profiel → <strong>Account &amp; Gegevens verwijderen</strong>. Dit verwijdert permanent alle inloggegevens, vernieuwingstokens, metergegevens, gecachte energie- en weergegevens, tariefinstellingen, widgetgegevens en voorkeuren van uw toestel. Er is niets opgeslagen op een EnergyBe-server om te verwijderen.`,
+    childrenTitle: "Kinderen",
+    childrenText: "EnergyBe is niet gericht op kinderen onder de 13 jaar en verzamelt bewust geen gegevens van hen.",
+    changesTitle: "Wijzigingen in dit beleid",
+    changesText: `Als dit beleid wezenlijk verandert, wordt de datum "Laatst bijgewerkt" hierboven aangepast. Omdat EnergyBe geen backend heeft, ontvangt u geen pushmelding — controleer deze pagina wanneer u de app bijwerkt.`,
+    contactTitle: "Contact",
+    contactText: `Vragen of opmerkingen? E-mail <a href="mailto:energybeapp@gmail.com">energybeapp@gmail.com</a>`,
+  },
+
+  fr: {
+    pageTitle: "EnergyBe — Politique de confidentialité",
+    subtitle: "Politique de confidentialité · Dernière mise à jour mai 2026",
+    badge: "Aucun suivi · Aucune pub · Aucun backend",
+    whatIsTitle: "Qu'est-ce qu'EnergyBe",
+    whatIsText: "EnergyBe est une application iOS gratuite et non commerciale qui permet aux ménages belges de visualiser leur consommation d'électricité et de gaz à partir de leur compteur intelligent Fluvius. Elle a été développée comme un projet personnel sans modèle commercial, sans abonnement et sans publicité. Toutes les données restent sur votre appareil.",
+    dataStoredTitle: "Données stockées sur votre appareil",
+    dataItem1: `<strong>Identifiants Fluvius</strong> — votre adresse e-mail et mot de passe sont stockés dans le Trousseau iOS. Ils ne sont transmis qu'à <code>login.fluvius.be</code> via HTTPS et jamais à un serveur contrôlé par le développeur.`,
+    dataItem2: `<strong>Détails du compteur</strong> — les codes EAN, numéros de série des compteurs, informations de type/statut, l'adresse de service associée, la ville et le code postal de votre compte Fluvius sont stockés localement dans le Trousseau iOS pour identifier vos compteurs et afficher des comparaisons locales. Ils ne sont jamais envoyés au développeur.`,
+    dataItem3: `<strong>Données de consommation d'énergie</strong> — les relevés de compteur récupérés via l'API Fluvius sont uniquement mis en cache sur votre appareil. Ils ne sont jamais téléchargés ailleurs.`,
+    dataItem4: `<strong>Préférences de l'application</strong> — les tarifs, le paramètre de verrouillage biométrique et l'état d'intégration sont uniquement stockés dans UserDefaults sur votre appareil.`,
+    doesNotTitle: "Ce qu'EnergyBe ne fait pas",
+    doesNot1: "N'envoie aucune donnée personnelle au développeur ni à des tiers",
+    doesNot2: "N'utilise aucun SDK de publicité, d'analyse ou de rapport de crash",
+    doesNot3: "N'a pas de serveur backend ni de base de données",
+    doesNot4: "Ne partage pas vos données avec qui que ce soit",
+    thirdPartyTitle: "Services tiers contactés par l'application",
+    thirdParty1: `<strong>Fluvius</strong> (<a href="https://fluvius.be">fluvius.be</a>) — pour l'authentification et la récupération de vos données de compteur. Régi par <a href="https://www.fluvius.be/nl/privacyverklaring">la propre politique de confidentialité de Fluvius</a>.`,
+    thirdParty2: `<strong>Open-Meteo</strong> (<a href="https://open-meteo.com">open-meteo.com</a>) — pour récupérer les températures extérieures historiques pour la fonctionnalité de corrélation de température. Open-Meteo est une API météo gratuite et open source ne nécessitant aucun compte. Seuls un nom de ville et, si disponible, le code postal dérivé de l'adresse de votre compteur sont utilisés pour déterminer les coordonnées météo belges ; aucun identifiant Fluvius, identifiant de compteur ou relevé de consommation n'est envoyé à Open-Meteo.`,
+    deleteTitle: "Comment supprimer toutes vos données",
+    deleteText: `Ouvrez EnergyBe → Profil → <strong>Supprimer le compte &amp; les données</strong>. Cela supprime définitivement et immédiatement tous les identifiants, jetons d'actualisation, détails des compteurs, données d'énergie et météo mises en cache, paramètres de tarifs, données du widget et préférences de votre appareil. Rien n'est stocké sur un serveur EnergyBe à supprimer.`,
+    childrenTitle: "Enfants",
+    childrenText: "EnergyBe n'est pas destiné aux enfants de moins de 13 ans et ne collecte pas sciemment de données les concernant.",
+    changesTitle: "Modifications de cette politique",
+    changesText: `Si cette politique change de manière substantielle, la date « Dernière mise à jour » ci-dessus sera modifiée. Comme EnergyBe n'a pas de backend, vous ne recevrez pas de notification push — consultez cette page lors de la mise à jour de l'application.`,
+    contactTitle: "Contact",
+    contactText: `Des questions ou préoccupations ? Écrivez à <a href="mailto:energybeapp@gmail.com">energybeapp@gmail.com</a>`,
+  }
+};
+
+function setLang(lang) {
+  const strings = i18n[lang];
+  if (!strings) return;
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  document.documentElement.lang = lang;
+  document.title = strings.pageTitle;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (strings[key] !== undefined) el.textContent = strings[key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (strings[key] !== undefined) el.innerHTML = strings[key];
+  });
+
+  try { localStorage.setItem('energybe-lang', lang); } catch (_) {}
+}
+
+(function () {
+  let lang = 'en';
+  try { lang = localStorage.getItem('energybe-lang') || 'en'; } catch (_) {}
+  if (!i18n[lang]) lang = 'en';
+  setLang(lang);
+})();
+</script>
 </body>
 </html>
